@@ -15,24 +15,25 @@ export class ProjectsService {
   create(createProjectDto: CreateProjectDto) {
     const project = new Project(createProjectDto);
     if (createProjectDto.started_at) {
-      project.status == ProjectStatus.Active;
+      project.status = ProjectStatus.Active;
     }
+    console.log('veja o status: ' + project.status);
     return this.projectRepo.save(project);
   }
 
   findAll() {
-    return `This action returns all projects`;
+    return this.projectRepo.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} project`;
+  findOne(id: string) {
+    return this.projectRepo.findOneOrFail({ where: { id } });
   }
 
-  update(id: number, updateProjectDto: UpdateProjectDto) {
+  update(id: string, updateProjectDto: UpdateProjectDto) {
     return `This action updates a #${id} project`;
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} project`;
   }
 }

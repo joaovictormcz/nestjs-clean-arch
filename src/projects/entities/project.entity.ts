@@ -26,7 +26,7 @@ export class Project {
   forecast_at: Date | null;
 
   @Column({ type: 'simple-enum' })
-  status: ProjectStatus;
+  status: ProjectStatus = ProjectStatus.Pending;
 
   constructor(
     props: {

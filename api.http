@@ -1,13 +1,15 @@
+###
 GET http://localhost:3000/projects
 
-##
-GET http://localhost:3000/projects/1
+###
+GET http://localhost:3000/projects/8b1671dd-f3e6-491e-906a-090f3799cb3b
 
-##
+###
 POST http://localhost:3000/projects
 Content-Type: application/json
 
 {
     "name": "Project 1",
-    "description": "Description 1"
+    "description": "Description 1",
+    "started_at": "20-01-01"
 }
