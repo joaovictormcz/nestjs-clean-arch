@@ -17,7 +17,6 @@ export class ProjectsService {
     if (createProjectDto.started_at) {
       project.status = ProjectStatus.Active;
     }
-    console.log('veja o status: ' + project.status);
     return this.projectRepo.save(project);
   }
 
@@ -29,8 +28,12 @@ export class ProjectsService {
     return this.projectRepo.findOneOrFail({ where: { id } });
   }
 
-  update(id: string, updateProjectDto: UpdateProjectDto) {
-    return `This action updates a #${id} project`;
+  async update(id: string, updateProjectDto: UpdateProjectDto) {
+    const project = await this.projectRepo.findOneOrFail({ where: { id } });
+
+    updateProjectDto.name && (project.name = updateProjectDto.name);
+    updateProjectDto.description &&
+      (project.description = updateProjectDto.description);
   }
 
   remove(id: string) {
